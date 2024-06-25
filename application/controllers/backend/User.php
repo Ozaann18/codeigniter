@@ -2,10 +2,14 @@
 
 class User extends MY_Controller
 {
-    public function profile()
+    public function profile($id = null)
     {
         $notif = null;
-        $user = \Orm\User::first();
+        if ($id == null) {
+            $user = \Orm\User::first();
+        } else {
+            $user = \Orm\User::find($id);
+        }
 
         if ($this->input->post()) {
             $username = $this->input->post('username');
